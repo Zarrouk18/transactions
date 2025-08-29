@@ -13,5 +13,8 @@ namespace Transactions.Application.Services.TransactionsServices
         Task<List<TransactionDto>> GetAllAsync();
         Task<List<TransactionDto>> GetPaymentsAsync();
         Task<decimal> GetTotalAmount();
+        Task<bool> UpdateAsync(Guid id, TransactionDto dto);
+        Task<bool> DeleteAsync(Guid id);
+        Task<PaginatedResult<TransactionDto>> GetPagedAsync(TransactionQuery query);
     }
 }

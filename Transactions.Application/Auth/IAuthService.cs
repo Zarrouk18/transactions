@@ -12,5 +12,6 @@ namespace Transactions.Application.Auth
         Task<AuthResponse> LoginAsync(LoginRequest request);
         Task<AuthResponse> RefreshAsync(RefreshRequest request);
         Task<AuthResponse> RegisterAsync(RegisterRequest request);
+        Task LogoutAsync(string username);
     }
 }

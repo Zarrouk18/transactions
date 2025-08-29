@@ -37,6 +37,8 @@ public partial class TransactionDbContext : IdentityDbContext<ApplicationUser>
                 .HasMaxLength(16)
                 .IsUnicode(false);
             entity.Property(e => e.Date).HasColumnType("datetime");
+          //  modelBuilder.Ignore<Transaction>();// en cas de migration
+
         });
 
         OnModelCreatingPartial(modelBuilder);

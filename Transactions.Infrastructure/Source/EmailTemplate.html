@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 6px;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 150px;
+        }
+
+        h2 {
+            color: #c00; /* rouge vif aligné charte */
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #c00;
+            color: white;
+            padding: 12px 24px;
+            margin-top: 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+            .btn:hover {
+                background-color: #a00;
+            }
+
+        .info {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-left: 4px solid #c00;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #888;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGt-4qtfH7R6xTqoDCHVjgqj4ssBkfCNQ8lg0rTvFdi_yfahUpd8_bPFMUHUuYQwAiwZE&usqp=CAU" alt="Logo de {{companyName}}" class="logo" />
+
+        <h2>Bienvenue chez {{companyName}}</h2>
+
+        <p>Bonjour <strong>{{username}}</strong>,</p>
+
+        <p>
+            Nous sommes heureux de vous accueillir au sein de l’équipe <strong>{{companyName}}</strong>.
+            Votre compte a été créé afin de vous permettre d’accéder à nos outils internes et de collaborer efficacement avec les différents services.
+        </p>
+
+        <p>Voici vos identifiants personnels de connexion :</p>
+
+        <div class="info">
+            <p><strong>Nom d'utilisateur :</strong> {{username}}</p>
+            <p><strong>Mot de passe :</strong> {{password}}</p>
+        </div>
+
+        <div class="footer">
+            <p>© {{year}} {{companyName}}. Tous droits réservés.</p>
+        </div>
+    </div>
+</body>
+</html>

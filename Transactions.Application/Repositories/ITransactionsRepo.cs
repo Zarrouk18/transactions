@@ -10,4 +10,8 @@ public interface ITransactionsRepo
     Task<List<Transaction>> GetAllAsync();
     Task<List<Transaction>> GetPaymentsAsync();
     Task<decimal> GetTotalAmountAsync();
+    Task<bool> UpdateAsync(Guid id, TransactionDto dto);
+    Task<bool> DeleteAsync(Guid id);
+    Task<(List<Transaction> Items, int TotalCount)> GetPagedAsync(
+            int page, int pageSize, string? q, int? type, string? sort);
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using Transactions.Application.Auth;
 using Transactions.Application.DTOs;
 using Transactions.Domain;
@@ -42,6 +43,19 @@ namespace Transaction.API.Controllers
             var result = await _authService.RefreshAsync(request);
             return Ok(result);
         }
+
+        [Authorize]
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            var username = User.Identity?.Name;
+            if (username == null)
+                return Unauthorized();
+
+            await _authService.LogoutAsync(username);
+            return Ok(new { message = "Déconnexion réussie" });
+        }
+
     }
 
 }

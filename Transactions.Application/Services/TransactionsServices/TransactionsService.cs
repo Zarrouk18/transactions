@@ -17,7 +17,10 @@ namespace Transactions.Application
 
         public async Task AddTransaction(CreateTransactionDto dto)
         {
+            if (dto.Amount <= 0)
+                throw new ArgumentException("Amount cannot be negative.");
             await _repo.AddAsync(dto);
+
 
         }
 
@@ -37,5 +40,36 @@ namespace Transactions.Application
         {
             return await _repo.GetTotalAmountAsync();
         }
+        public async Task<bool> UpdateAsync(Guid id, TransactionDto dto)
+        {
+            // We expect CardNumber, Amount, Type for an update.
+            if (dto.Amount.HasValue && dto.Amount.Value < 0)
+                throw new ArgumentException("Amount cannot be negative.");
+
+            // Date is NOT changed here (kept as originally set on create)
+            return await _repo.UpdateAsync(id, dto);
+        }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        { 
+            return await _repo.DeleteAsync(id);
+        }
+
+        public async Task<PaginatedResult<TransactionDto>> GetPagedAsync(TransactionQuery query)
+        {
+            var page = query.Page < 1 ? 1 : query.Page;
+            var size = query.PageSize < 5 ? 5 : (query.PageSize > 100 ? 100 : query.PageSize);
+
+            var (items, total) = await _repo.GetPagedAsync(page, size, query.Q, query.Type, query.Sort);
+
+            return new PaginatedResult<TransactionDto>
+            {
+                Items = items.ToTransactionDtoList(),
+                TotalCount = total,
+                Page = page,
+                PageSize = size
+            };
+        }
+
     }
 }
